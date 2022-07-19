@@ -1,0 +1,84 @@
+{
+    "name": "apsjournal",
+    "title": "Arius Planeswalker's Stylish Journal",
+    "description": "Need to draw attention to important information in your journals? Panels have you covered, from informative to notes to warnings and bonuses. Like the D&D style text? Fake it till you make it with D&D Text Styles you can apply to Headings and body text. No more boring encounter pages. Liven it up with the Encounter Block, complete with Adversary listing! Add some panache to your Magic Item listings and pull out the important stats and item links to a quickly accessible aside. Have a description to read aloud and need a way to differentiate it on the page? Read Aloud block to the rescue! Stop looking at those boring old pale pages. Add some vibrance and style to your journal entries today!",
+    "version": "This is auto replaced",
+    "library": "false",
+    "manifestPlusVersion": "1.2.0",
+    "minimumCoreVersion": "9",
+    "compatibleCoreVersion": "9",
+    "author": "Vanish",
+    "authors": [
+        {
+            "name": "Vanish",
+            "url": "https://vanishsvault.com/",
+            "email": "chris@vanclevefamily.net",
+            "discord": "vanish#4369",
+            "ko-fi": "amazingvanish",
+            "reddit": "u/AmazingVanish",
+            "twitter": "@AmazingVanish"
+        }
+    ],
+    "dependencies": [],
+    "esmodules": ["scripts/apsjournal.js"],
+    "scripts": [],
+    "styles": ["styles/apsjournal.css"],
+    "includes": ["assets", "fonts"],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "languages/en.json"
+        },
+        {
+            "lang": "fr",
+            "name": "French (Français)",
+            "path": "languages/fr.json"
+        },
+        {
+            "lang": "de",
+            "name": "German (Deutsch)",
+            "path": "languages/de.json"
+        },
+        {
+            "lang": "es",
+            "name": "Spanish (Español)",
+            "path": "languages/es.json"
+        }
+    ],
+    "url": "This is auto replaced",
+    "manifest": "This is auto replaced",
+    "download": "This is auto replaced",
+    "media": [
+        {
+            "type": "cover",
+            "url": "https://raw.githubusercontent.com/AmazingVanish/apsjournal/master/media/apsjournal-cover.webp",
+            "caption": "Arius Planeswalker's Stylish Journal for Monk's Enhanced Journal"
+        }
+    ],
+    "flags": {
+        "allowBugReporter": true,
+        "conflicts": [
+            {
+                "name": "apsj",
+                "description": "This is the deprecated older version of the APS Journal"
+            },
+            {
+                "name": "apsj4mej",
+                "description": "This is the deprecated older version of the APS Journal that required Monk's Enhanced Journal"
+            },
+            {
+                "name": "mce-config",
+                "description": "apsjournal provides the same toolbar changes, and more!"
+            },
+            {
+                "name": "custom-fonts",
+                "description": "This module provides several custom fonts for use in the journal. It is not recommended to use this module with the Custom Fonts module. You will need to choose which module provides more benefit to you and which one you want to use."
+            }
+        ]
+    },
+    "license": "https://github.com/AmazingVanish/apsjournal/blob/master/LICENSE",
+    "readme": "https://github.com/AmazingVanish/apsjournal/blob/master/README.md",
+    "bugs": "https://github.com/AmazingVanish/apsjournal/issues/new/choose",
+    "changelog": "https://github.com/AmazingVanish/apsjournal/blob/master/CHANGELOG.md"
+}
