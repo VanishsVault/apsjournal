@@ -268,7 +268,7 @@ a.inline-roll i {
 
 .apsj-h2 {
     font-family: var(--font-apsj-scalycaps);
-    font-weight: 400;
+    font-weight: 700;
     font-size: 1.5em;
 }
 
@@ -308,7 +308,6 @@ a.inline-roll i {
     font-family: var(--font-apsj-scalycaps);
     font-weight: 700;
     font-size: 1.5em;
-    font-variant: small-caps;
 }
 
 .apsj-panel header p {

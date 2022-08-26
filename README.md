@@ -29,17 +29,20 @@ You can find the new Panels, Blocks, and Dialogues under the Stylish dropdown.
 
 ## Media
 
-![panels](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-panels.webp)
-_The available Panels_
+![ui](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-journal.webp)
+_The New Journal Interface_
 
 ![blocks](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-blocks.webp)
-_The available Blocks_
+_The Available Blocks_
 
 ![dialogues](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-dialogues.webp)
-_The available Dialogue Blocks_
+_The Available Dialogues_
 
-![elements](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-elements.webp)
-_The available Element Styling_
+![panels](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-panels.webp)
+_The Available Panels_
+
+![elements](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-tables.webp)
+_The Available Element Stylings_
 
 ## Conflicts
 
