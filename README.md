@@ -22,10 +22,7 @@ In the setup screen, use the URL `https://github.com/VanishsVault/apsjournal/rel
 After enabling the module, everything is ready to go. I've tried to make it as easy as possible to use the new features.
 
 The new Text Styles can be found under the Format dropdown at the left of the toolbar.
-![text-styles](https://raw.github.com/VanishsVault/apsjournal/master/media/apsjournal-text-styles.webp)
-
 You can find the new Panels, Blocks, and Dialogues under the Stylish dropdown.
-![templates](https://raw.github.com/VanishsVault/apsjournal/master/media/apsjournal-template.webp)
 
 ## Media
 
