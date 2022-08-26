@@ -4,12 +4,12 @@
 
 ![cover](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-cover.webp)
 
-Need to draw attention to important information in your journals? Panels have you covered, from informative to notes to warnings and bonuses.
-Like the D&D style text? Fake it till you make it with D&D Text Styles you can apply to Headings and body text.
-No more boring encounter pages. Liven it up with the Encounter Block, complete with Adversary listing!
-Add some panache to your Featured Item listings and describe them complete with item links to a quickly accessible aside.
-Have a description to read aloud and need a way to differentiate it on the page? Read Aloud block to the rescue!
-Need to keep your dialogue between NPCs straight? Dialogue blocks come in 7 different colors with left and right icons.
+- Need to draw attention to important information in your journals? Panels have you covered, from informative to notes to warnings and bonuses.
+- Like the D&D style text? Fake it till you make it with D&D Text Styles you can apply to Headings and body text.
+- No more boring encounter pages. Liven it up with the Encounter Block, complete with Adversary listing!
+- Add some panache to your Featured Item listings and describe them complete with item links to a quickly accessible aside.
+- Have a description to read aloud and need a way to differentiate it on the page? Read Aloud block to the rescue!
+- Need to keep your dialogue between NPCs straight? Dialogue blocks come in 7 different colors with left and right icons.
 
 _Stop looking at those boring old pale pages. Add some vibrance and style to your journal entries today!_
 
