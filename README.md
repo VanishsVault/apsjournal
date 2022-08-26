@@ -2,6 +2,8 @@
 
 ![All Releases Downloads](https://img.shields.io/github/downloads/VanishsVault/apsjournal/total?logo=GitHub) ![Latest Release Downloads](https://img.shields.io/github/downloads/VanishsVault/apsjournal/latest/total?logo=GitHub) ![GitHub Release (latest by date)](https://img.shields.io/github/v/release/VanishsVault/apsjournal?logo=GitHub) ![Issues](https://img.shields.io/github/issues/VanishsVault/apsjournal?logo=GitHub) ![Forge Installs](https://img.shields.io/badge/dynamic/json?color=green&label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fapsjournal) ![Foundry](https://img.shields.io/endpoint?url=https://foundryshields.com/version?url=https://raw.githubusercontent.com/VanishsVault/apsjournal/master/module.json&color=ff6400) ![License](https://img.shields.io/github/license/VanishsVault/apsjournal) [![Discord Server](https://img.shields.io/badge/-Discord-%232c2f33?logo=discord)](https://discord.gg/ge9GJXDsM2)
 
+![cover](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-cover.webp)
+
 ## Arius Planeswalker Presents: Stylish Journal
 
 Need to draw attention to important information in your journals? Panels have you covered, from informative to notes to warnings and bonuses.
@@ -26,20 +28,25 @@ You can find the new Panels, Blocks, and Dialogues under the Stylish dropdown.
 
 ## Media
 
+### _The New Journal Interface_
+
 ![ui](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-journal.webp)
-_The New Journal Interface_
+
+### _The Available Blocks_
 
 ![blocks](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-blocks.webp)
-_The Available Blocks_
+
+### _The Available Dialogues_
 
 ![dialogues](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-dialogues.webp)
-_The Available Dialogues_
+
+### _The Available Panels_
 
 ![panels](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-panels.webp)
-_The Available Panels_
+
+### _The Available Element Stylings_
 
 ![elements](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-tables.webp)
-_The Available Element Stylings_
 
 ## Conflicts
 
@@ -64,4 +71,5 @@ You can submit bugs via [Github Issues](https://github.com/VanishsVault/apsjourn
 
 Come hang out on [my Discord server](https://discord.gg/ge9GJXDsM2) or [click here to send me an email](mailto:chris@vanclevefamily.net?subject=Arius%20Planeswalker's%20Stylish%20Journal%20module%20for%20Foundry%20VTT).
 
-If you're feeling generous and really like my work, feel free to buy me a coffee. [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E7DW6GZ)
+If you're feeling generous and really like my work, feel free to buy me a coffee.
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E7DW6GZ)
