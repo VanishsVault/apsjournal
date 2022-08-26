@@ -7,11 +7,6 @@ const debouncedReload = foundry.utils.debounce(
     100
 );
 
-/**
- * Change to the selected theme in local storage
- **/
-const setTheme = (theme) => (document.documentElement.className = theme);
-
 Hooks.on('init', () => {
     game.settings.register('apsjournal', 'apsjournalEnableParchment', {
         name: game.i18n.format('apsjournal.menuEnableParchmentName'),
@@ -23,39 +18,92 @@ Hooks.on('init', () => {
         onChange: debouncedReload,
     });
 
-    let theme = localStorage.getItem('apsj-theme');
+    FontConfig.loadFont('Bookinsanity', {
+        editor: true,
+        fonts: [
+            { urls: 'fonts/Bookinsanity/Bookinsanity.otf' },
+            { urls: 'fonts/Bookinsanity/BookinsanityBold.otf', weight: 700 },
+            {
+                urls: 'fonts/Bookinsanity/BookinsanityBoldItalic.otf',
+                weight: 700,
+                style: 'italic',
+            },
+            {
+                urls: 'fonts/Bookinsanity/BookinsanityItalic.otf',
+                style: 'italic',
+            },
+        ],
+    });
 
-    if (theme) {
-        setTheme(theme);
-    } else {
-        setTheme('red');
-    }
+    FontConfig.loadFont('DungeonDropCase', {
+        editor: true,
+        fonts: [{ urls: 'fonts/DungeonDropCase/DungeonDropCase.otf' }],
+    });
 
-    CONFIG.TinyMCE.plugins =
-        ' advlist lists anchor searchreplace textpattern template image table hr code save link';
+    FontConfig.loadFont('MrEaves', {
+        editor: true,
+        fonts: [{ urls: 'fonts/MrEaves/MrEaves.otf' }],
+    });
 
-    CONFIG.TinyMCE.toolbar =
-        'styleselect fontselect fontsizeselect formatgroup paragraphgroup insertgroup code save';
+    FontConfig.loadFont('ScalySans', {
+        editor: true,
+        fonts: [
+            { urls: 'fonts/ScalySans/ScalySans.otf' },
+            { urls: 'fonts/ScalySans/ScalySansBold.otf', weight: 700 },
+            {
+                urls: 'fonts/ScalySans/ScalySansBoldItalic.otf',
+                weight: 700,
+                style: 'italic',
+            },
+            { urls: 'fonts/ScalySans/ScalySansCaps.otf', style: 'caps' },
+            {
+                urls: 'fonts/ScalySans/ScalySansCapsBold.otf',
+                style: 'caps',
+                weight: 700,
+            },
+            {
+                urls: 'fonts/ScalySans/ScalySansCapsBoldItalic.otf',
+                style: 'caps italic',
+                weight: 700,
+            },
+            {
+                urls: 'fonts/ScalySans/ScalySansCapsItalic.otf',
+                style: 'caps italic',
+            },
+            { urls: 'fonts/ScalySans/ScalySansItalic.otf', style: 'italic' },
+        ],
+    });
+});
 
-    CONFIG.TinyMCE.toolbar_groups = {
-        formatgroup: {
-            icon: 'format',
-            tooltip: 'Formatting',
-            items: 'bold italic underline strikethrough | forecolor backcolor | superscript subscript | removeformat',
-        },
-        paragraphgroup: {
-            icon: 'paragraph',
-            tooltip: 'Paragraph format',
-            items: 'h1 h2 h3 | bullist numlist | alignleft aligncenter alignright | indent outdent',
-        },
-        insertgroup: {
-            icon: 'plus',
-            tooltip: 'Insert',
-            items: 'link anchor image table hr | template',
-        },
-    };
+// class MyMenu extends ProseMirror.ProseMirrorMenu {}
 
-    CONFIG.TinyMCE.content_css.push('modules/apsjournal/styles/apsjournal.css');
+// Hooks.on('createProseMirrorEditor', () => {
+//     plugins.menu = MyMenu.build(ProseMirror.defaultSchema);
+// });
+
+Hooks.on('createProseMirrorEditor', () => {
+    ProseMirror.defaultPlugins.menu =
+        class extends ProseMirror.ProseMirrorMenu {
+            _getDropDownMenus() {
+                const menus = super._getDropDownMenus();
+                menus.format.entries.push({
+                    action: 'apsj-text',
+                    title: 'Stylish Text',
+                    children: [],
+                });
+                menus.format.entries.push({
+                    action: 'apsj-blocks',
+                    title: 'Stylish Blocks',
+                    children: [],
+                });
+                menus.format.entries.push({
+                    action: 'apsj-panels',
+                    title: 'Stylish Panels',
+                    children: [],
+                });
+                return menus;
+            }
+        }.build(ProseMirror.defaultSchema);
 });
 
 Hooks.on('ready', () => {
@@ -64,35 +112,12 @@ Hooks.on('ready', () => {
         let style = document.createElement('style');
         style.id = 'apsjournal-changes';
         innerHTML += `
-.journal-sheet form.editable, .journal-sheet form.locked {
+.sheet.journal-entry .journal-entry-content, .journal-sheet form.editable, .journal-sheet form.locked {
     background-image: url(modules/apsjournal/assets/parchment.webp);
 }
 
-.monks-enhanced-journal .mainbar {
-    background-image: url(modules/apsjournal/assets/parchment-medium.webp);
-}
-
-.monks-enhanced-journal .directory-sidebar {
+.sheet.journal-entry .sidebar {
     background-image: url(modules/apsjournal/assets/parchment-medium.webp) !important;
-}
-
-.dnd5e .monks-enhanced-journal .tab-bar .journal-tab.active {
-    background-image: url(modules/apsjournal/assets/parchment.webp);
-}
-
-.monks-journal-sheet .encounter-body {
-    background-image: url(modules/apsjournal/assets/parchment-bloody.webp);
-}
-
-.monks-journal-sheet,
-.monks-journal-sheet.sheet .person-container,
-.monks-journal-sheet.sheet .place-container,
-.monks-journal-sheet.sheet .quest-container,
-.monks-journal-sheet.sheet .organization-container,
-.monks-journal-sheet.sheet .shop-container,
-.monks-journal-sheet.sheet .loot-container,
-.monks-journal-sheet.sheet .poi-container {
-    background-image: url(modules/apsjournal/assets/parchment.webp);
 }
 `;
         style.innerHTML = innerHTML;
@@ -101,38 +126,6 @@ Hooks.on('ready', () => {
         }
     }
 
-    CONFIG.TinyMCE.style_formats.push({
-        title: 'Stylish Text',
-        items: [
-            {
-                title: game.i18n.format('apsjournal.textHeadingTitleName'),
-                selector: 'h1,h2,h3,h4,h5,h6,th,td,p',
-                classes: 'dnd-title',
-            },
-            {
-                title: game.i18n.format('apsjournal.textHeadingName'),
-                selector: 'h1,h2,h3,h4,h5,h6,th,td,p',
-                classes: 'dnd-heading',
-            },
-            {
-                title: game.i18n.format('apsjournal.textDataHeadingName'),
-                selector: 'h1,h2,h3,h4,h5,h6,th,td,p',
-                classes: 'dnd-data-heading',
-            },
-            {
-                title: game.i18n.format('apsjournal.textDataName'),
-                selector: 'h1,h2,h3,h4,h5,h6,th,td,p',
-                classes: 'dnd-data',
-            },
-            {
-                title: game.i18n.format('apsjournal.textParagraphName'),
-                selector: 'td,p',
-                classes: 'dnd-text',
-            },
-        ],
-    });
-
-    CONFIG.TinyMCE.templates = CONFIG.TinyMCE.templates ?? [];
     CONFIG.TinyMCE.templates.push(
         {
             title: game.i18n.format('apsjournal.panelBonusName'),
@@ -563,114 +556,6 @@ Hooks.on('ready', () => {
 <p></p>`,
         }
     );
-
-    Hooks.on('renderJournalSheet', () => {
-        function changeColorTheme(theme, e) {
-            setTheme(theme);
-            localStorage.setItem('apsj-theme', theme);
-
-            if (!e) var e = window.event;
-            e.cancelBubble = true;
-            if (e.stopPropagation) e.stopPropagation();
-        }
-
-        function toggleThemeSwitcher() {
-            var tooltip = document.getElementById('theme-switcher');
-            if (tooltip.style.display === 'none') {
-                tooltip.style.display = 'block';
-            } else {
-                tooltip.style.display = 'none';
-            }
-        }
-
-        let buttons = document.getElementById('journal-buttons');
-        let nba = document.createElement('div');
-        nba.innerHTML = `<i class='fas fa-palette'></i>
-		<div id='theme-switcher' style='display:none;'>
-			<div class="ct-none" id="ct-none"></div>
-			<div class="ct-blue" id="ct-blue"></div>
-			<div class="ct-cyan" id="ct-cyan"></div>
-			<div class="ct-green" id="ct-green"></div>
-			<div class="ct-orange" id="ct-orange"></div>
-			<div class="ct-purple" id="ct-purple"></div>
-			<div class="ct-red" id="ct-red"></div>
-			<div class="ct-yellow" id="ct-yellow"></div>
-		</div>`;
-        nba.title = 'Color Theme';
-        nba.classList.add('nav-button');
-        nba.classList.add('apsj-ct');
-        nba.setAttribute('id', 'apsj-color-theme-toggle');
-        buttons.parentNode.insertBefore(nba, buttons.nextSibling);
-
-        document.getElementById('ct-none').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('none', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-blue').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('blue', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-cyan').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('cyan', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-green').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('green', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-orange').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('orange', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-purple').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('purple', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-red').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('red', event);
-            },
-            false
-        );
-
-        document.getElementById('ct-yellow').addEventListener(
-            'click',
-            function (event) {
-                changeColorTheme('yellow', event);
-            },
-            false
-        );
-
-        document.getElementById('apsj-color-theme-toggle').onclick =
-            function () {
-                toggleThemeSwitcher();
-            };
-    });
 
     console.log(
         `%c Arius Planeswalker's \n%cStylish\n%cJournal`,

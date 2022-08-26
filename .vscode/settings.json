@@ -1,0 +1,46 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "142.93.75.61",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "VCF DB",
+            "group": "Van Cleve Family",
+            "username": "vcfdb",
+            "database": "vcfdb",
+            "password": "D7RWDQ4lLzfefd3zVD5O"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "142.93.75.61",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "RASSY DB",
+            "group": "DSV",
+            "database": "rassydb",
+            "username": "rassydb",
+            "password": "lWgzSAehxO6Mv6b02hDS"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "142.93.75.61",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Newsletter DB",
+            "group": "DSV",
+            "database": "newsydb",
+            "username": "newsydb",
+            "password": "i2a4FfXxLQVwah6Snd2f"
+        }
+    ]
+}
