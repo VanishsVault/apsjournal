@@ -4,8 +4,6 @@
 
 ![cover](https://raw.githubusercontent.com/VanishsVault/apsjournal/master/media/apsjournal-cover.webp)
 
-## Arius Planeswalker Presents: Stylish Journal
-
 Need to draw attention to important information in your journals? Panels have you covered, from informative to notes to warnings and bonuses.
 Like the D&D style text? Fake it till you make it with D&D Text Styles you can apply to Headings and body text.
 No more boring encounter pages. Liven it up with the Encounter Block, complete with Adversary listing!
