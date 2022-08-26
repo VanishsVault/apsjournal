@@ -56,6 +56,7 @@ You can find the new Panels, Blocks, and Dialogues under the Stylish dropdown.
 
 - Border used on the cards from [Ornament Vectors by Vecteezy](https://www.vecteezy.com/free-vector/ornament)
 - Additional fonts provided (Bookinsanity, Dungeon Drop Case, Mr Eaves, and Scaly Sans) are the incredible work of [Solbera](https://www.reddit.com/r/UnearthedArcana/comments/3vpphx/5e_font_package_embeddable_cc_edition/) with fixes by [Ryrock](https://www.reddit.com/r/UnearthedArcana/comments/4loka0/fixed_versions_of_solberas_fonts/) and [Ners](https://www.reddit.com/r/UnearthedArcana/comments/71wzc2/new_indesign_template_and_open_source_fonts/) as provided by [JonathanF](https://github.com/jonathonf/solbera-dnd-fonts).
+- Some tokens used in the promo images are from [Forgotten Adventures](www.forgotten-adventures.net). Consider becoming their patron if you like high quality artwork for mapmaking and/or tokens.
 
 ## License
 
