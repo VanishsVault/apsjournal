@@ -11,12 +11,9 @@
     "authors": [
         {
             "name": "Vanish",
-            "url": "https://vanishsvault.com/",
-            "email": "chris@vanclevefamily.net",
             "discord": "vanish#4369",
-            "ko-fi": "amazingvanish",
-            "reddit": "u/AmazingVanish",
-            "twitter": "@AmazingVanish"
+            "patreon": "https://www.patreon.com/user?u=47502290",
+            "ko-fi": "https://ko-fi.com/amazingvanish"
         }
     ],
     "esmodules": ["scripts/apsjournal.js"],
