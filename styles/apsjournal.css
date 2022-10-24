@@ -6,6 +6,7 @@
     --color-apsj-primary: rgb(128, 0, 0);
     --color-apsj-background-primary: rgba(128, 0, 0, 0.66);
     --color-apsj-background-primary-dark: rgba(100, 0, 0, 0.66);
+    --color-apsj-border-primary-light: rgb(255, 0, 0);
     --color-apsj-border-primary: rgb(160, 0, 0);
     --color-apsj-border-primary-dark: rgb(140, 0, 0);
 
@@ -102,43 +103,64 @@
 :root.blue {
     --color-apsj-primary: rgb(18, 69, 170);
     --color-apsj-background-primary: rgba(18, 69, 170, 0.75);
+    --color-apsj-background-primary-dark: rgba(0, 49, 150, 0.75);
+    --color-apsj-border-primary-light: rgb(61, 146, 255);
     --color-apsj-border-primary: rgb(1, 86, 255);
+    --color-apsj-border-primary-dark: rgb(0, 66, 235);
 }
 
 :root.cyan {
     --color-apsj-primary: rgb(7, 103, 144);
     --color-apsj-background-primary: rgba(7, 103, 144, 0.75);
+    --color-apsj-background-primary-dark: rgba(0, 83, 124, 0.75);
+    --color-apsj-border-primary-light: rgb(60, 196, 255);
     --color-apsj-border-primary: rgb(0, 136, 195);
+    --color-apsj-border-primary-dark: rgb(0, 116, 175);
 }
 
 :root.green {
     --color-apsj-primary: rgb(0, 128, 0);
     --color-apsj-background-primary: rgba(0, 128, 0, 0.75);
+    --color-apsj-background-primary-dark: rgba(0, 108, 0, 0.75);
+    --color-apsj-border-primary-light: rgb(60, 252, 60);
     --color-apsj-border-primary: rgb(0, 192, 0);
+    --color-apsj-border-primary-dark: rgb(0, 172, 0);
 }
 
 :root.none {
     --color-apsj-primary: rgb(0, 0, 0);
     --color-apsj-background-primary: rgba(255, 255, 255, 0);
+    --color-apsj-background-primary-dark: rgba(235, 235, 235, 0);
+    --color-apsj-border-primary-light: rgb(255, 255, 255);
     --color-apsj-border-primary: rgb(255, 255, 255);
+    --color-apsj-border-primary-dark: rgb(235, 235, 235);
 }
 
 :root.orange {
     --color-apsj-primary: rgb(255, 128, 0);
     --color-apsj-background-primary: rgba(255, 128, 0, 0.75);
+    --color-apsj-background-primary-dark: rgba(235, 108, 0, 0.75);
+    --color-apsj-border-primary-light: rgb(255, 220, 60);
     --color-apsj-border-primary: rgb(255, 160, 0);
+    --color-apsj-border-primary-dark: rgb(235, 140, 0);
 }
 
 :root.purple {
     --color-apsj-primary: rgb(52, 26, 255);
     --color-apsj-background-primary: rgba(52, 26, 255, 0.75);
+    --color-apsj-background-primary-dark: rgba(32, 6, 235, 0.75);
+    --color-apsj-border-primary-light: rgb(180, 163, 255);
     --color-apsj-border-primary: rgb(120, 103, 255);
+    --color-apsj-border-primary-dark: rgb(100, 83, 235);
 }
 
 :root.yellow {
     --color-apsj-primary: rgb(214, 150, 0);
     --color-apsj-background-primary: rgba(214, 150, 0, 0.75);
+    --color-apsj-background-primary-dark: rgba(194, 130, 0, 0.75);
+    --color-apsj-border-primary-light: rgb(255, 250, 67);
     --color-apsj-border-primary: rgb(246, 190, 7);
+    --color-apsj-border-primary-dark: rgb(226, 170, 0);
 }
 
 /**
@@ -238,6 +260,11 @@ a.inline-roll i {
     border-top: 1px solid var(--color-apsj-border-primary);
 }
 
+.sheet.journal-entry .pages-list .directory-item.active + :not(.active),
+.sheet.journal-entry .pages-list .directory-item:not(.active) + .active {
+    border-top: 1px solid var(--color-apsj-border-primary-light);
+}
+
 .journal-sheet .journal-header .title {
     font-family: var(--font-apsj-modesto);
     font-weight: 700;
@@ -252,6 +279,18 @@ a.inline-roll i {
 /**
 * MEJ Overrides
 **/
+
+.monks-enhanced-journal .tab-bar .journal-tab.active {
+    background: rgba(255, 255, 240, 0.8) !important;
+}
+
+.monks-enhanced-journal .tab-bar .journal-tab.active:hover {
+    background: rgba(255, 255, 255, 1) !important;
+}
+
+.monks-journal-sheet.sheet .currency-group .form-fields input {
+    background: rgba(255, 255, 255, 0.6);
+}
 
 .monks-enhanced-journal .directory-sidebar {
     background: transparent !important;
@@ -276,6 +315,14 @@ a.inline-roll i {
 .monks-enhanced-journal .mainbar .navigation,
 .monks-enhanced-journal .mainbar .bookmark-bar {
     background: var(--color-apsj-background-primary) !important;
+}
+
+.monks-enhanced-journal .mainbar .navigation .nav-button:hover,
+.monks-enhanced-journal
+    .mainbar
+    .bookmark-bar
+    .bookmark-button.add-bookmark:hover {
+    background: rgba(255, 255, 255, 1) !important;
 }
 
 .monks-enhanced-journal .mainbar .navigation .nav-input,
@@ -1405,4 +1452,174 @@ a.inline-roll i {
 
 .apsj-panel.apsj-yellow.with-icon::before {
     content: '\f044';
+}
+
+/**
+* Stylish MEJ Sheets
+**/
+
+.monks-journal-sheet.sheet .items-list .items-header {
+    background: var(--color-apsj-background-primary) !important;
+    color: var(--color-apsj-light-0);
+    box-shadow: 0px 0px 8px var(--color-apsj-background-dark-50);
+}
+
+.monks-journal-sheet .encounter-body {
+    background: url('/modules/apsjournal/assets/parchment-bloody.webp')
+        no-repeat center;
+    background-size: cover;
+}
+
+.monks-journal-sheet.sheet .sheet-navigation {
+    color: var(--color-apsj-light-0);
+    text-shadow: 1px 1px 2px var(--color-apsj-dark-0);
+}
+
+.monks-journal-sheet .header-name,
+.monks-journal-sheet .header-name input {
+    color: var(--color-apsj-light-0) !important;
+    text-shadow: 1px 1px 2px var(--color-apsj-dark-0);
+}
+
+.monks-journal-sheet .header-name input {
+    font-family: var(--font-apsj-modesto);
+}
+
+.monks-journal-sheet .journal-subsheet .encounter-buttons > div {
+    color: var(--color-apsj-dark-0);
+    background: rgba(255, 255, 240, 0.8) !important;
+}
+
+.monks-journal-sheet .journal-subsheet .encounter-buttons > div:hover {
+    color: var(--color-apsj-dark-2);
+    background: rgba(255, 255, 255, 1) !important;
+}
+
+.monks-journal-sheet.sheet
+    .journal-subsheet
+    .items-list
+    .item-controls.item-quantity
+    input[type='text'],
+.monks-journal-sheet.sheet
+    .journal-subsheet
+    .items-list
+    .item-controls.item-quantity
+    input[type='number'],
+.monks-journal-sheet.sheet
+    .journal-subsheet
+    .items-list
+    .item-controls.item-remaining
+    input[type='number'],
+.monks-journal-sheet.sheet .items-list .item-from input[type='text'] {
+    background: rgba(255, 255, 240, 0.8);
+    border-color: var(--color-apsj-dark-3) !important;
+}
+
+.monks-journal-sheet.sheet .items-list .item-from:hover,
+.monks-journal-sheet.sheet .items-list .item-from:focus {
+    border-color: var(--color-apsj-dark-3) !important;
+    box-shadow: 0 0 8px red !important;
+}
+
+.monks-journal-sheet.sheet .items-list .item-controls a {
+    color: var(--color-apsj-light-0);
+    text-shadow: 1px 1px 2px var(--color-apsj-dark-0);
+}
+
+.monks-journal-sheet.sheet .tab.items .currency-group {
+    width: 100%;
+    background: var(--color-apsj-background-primary);
+    border: 2px groove #eeede0;
+}
+
+.monks-journal-sheet.sheet .tab.items .currency-group label {
+    color: var(--color-apsj-light-0);
+    text-shadow: 1px 1px 2px var(--color-apsj-dark-0);
+}
+
+.monks-journal-sheet.sheet .items-list > .item-list {
+    color: var(--color-apsj-dark-0);
+}
+
+.monks-journal-sheet.sheet .loot-container {
+    background-image: url('/modules/apsjournal/assets/parchment.webp');
+    background-size: cover;
+}
+
+.monks-journal-sheet.sheet .sheet-header .sheet-image {
+    background-image: url('/modules/apsjournal/assets/green-item.webp');
+    background-size: cover;
+    border: none !important;
+}
+
+.monks-journal-sheet.sheet .loot-container .sheet-header img.profile {
+    height: auto !important;
+    width: 130px !important;
+    margin: 15px;
+}
+
+.loot-character > .character-name {
+    color: var(--color-apsj-dark-0);
+}
+
+/**
+* Theme Switcher
+*/
+
+#theme-switcher {
+    position: relative;
+    display: grid;
+    grid-gap: 10px;
+    padding: 10px;
+    border: 4px solid rgb(165, 124, 70);
+    border-radius: 25px;
+    background: url(../assets/parchment-medium.webp);
+    box-shadow: 0 0 5px var(--color-apsj-dark-0);
+    z-index: 999;
+    width: 50px;
+}
+
+#theme-switcher div {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    border: 2px solid var(--color-apsj-light-0);
+    border-radius: 50%;
+    padding-left: 20px;
+    font-size: 20px;
+    width: 20px;
+    height: 25px;
+    font-family: var(--font-apsj-scalycaps);
+}
+
+.ct-none {
+    background: var(--color-apsj-theme-none);
+}
+
+.ct-blue {
+    background: var(--color-apsj-theme-blue);
+}
+
+.ct-cyan {
+    background: var(--color-apsj-theme-cyan);
+}
+
+.ct-green {
+    background: var(--color-apsj-theme-green);
+}
+
+.ct-orange {
+    background: var(--color-apsj-theme-orange);
+}
+
+.ct-purple {
+    background: var(--color-apsj-theme-purple);
+}
+
+.ct-red {
+    background: var(--color-apsj-theme-red);
+}
+
+.ct-yellow {
+    background: var(--color-apsj-theme-yellow);
 }

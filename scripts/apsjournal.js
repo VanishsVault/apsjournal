@@ -11,6 +11,11 @@ let modulename = 'apsjournal';
 
 let APSJ = {};
 
+/**
+ * Change to the selected theme in local storage
+ **/
+const setTheme = (theme) => (document.documentElement.className = theme);
+
 Hooks.on('init', () => {
     game.settings.register(modulename, 'enable-parchment', {
         name: game.i18n.format('APSJournal.enable-parchment.name'),
@@ -21,6 +26,14 @@ Hooks.on('init', () => {
         type: Boolean,
         onChange: debouncedReload,
     });
+
+    let theme = localStorage.getItem('apsj-theme');
+
+    if (theme) {
+        setTheme(theme);
+    } else {
+        setTheme('red');
+    }
 
     FontConfig.loadFont('Bookinsanity', {
         editor: true,
@@ -1173,59 +1186,63 @@ class APSJMenu extends ProseMirror.ProseMirrorMenu {
         );
 
         const node = ProseMirror.dom.parseString(htmlString);
-
         const state = this.view.state;
         const { $cursor } = state.selection;
-        this.view.dispatch(state.tr.insert($cursor.pos, node.content));
+        const tr = state.tr.insert($cursor.pos, node.content);
+        const pos = $cursor.pos + node.nodeSize;
+
+        tr.setSelection(ProseMirror.TextSelection.create(tr.doc, pos));
+        this.view.dispatch(tr);
     }
 
     _getDropDownMenus() {
         const menus = super._getDropDownMenus();
-        menus.format.entries.push({
-            action: 'stylishText',
-            title: 'Stylish Text',
-            children: [
-                {
-                    action: 'stylishTitle',
-                    title: game.i18n.format(
-                        'APSJournal.text-heading-title.name'
-                    ),
-                    priority: 1,
-                    style: "font-family: 'Modesto Condensed'",
-                    node: ProseMirror.defaultSchema.nodes.paragraph,
-                },
-                {
-                    action: 'stylishHeading',
-                    title: game.i18n.format('APSJournal.text-heading.name'),
-                    priority: 1,
-                    style: "font-family: 'ScalySansCaps'",
-                    node: ProseMirror.defaultSchema.nodes.paragraph,
-                },
-                {
-                    action: 'stylishDataHeading',
-                    title: game.i18n.format(
-                        'APSJournal.text-data-heading.name'
-                    ),
-                    priority: 1,
-                    style: "font-family: 'ScaySansCaps'",
-                    node: ProseMirror.defaultSchema.nodes.paragraph,
-                },
-                {
-                    action: 'stylishData',
-                    title: game.i18n.format('APSJournal.text-data.name'),
-                    priority: 1,
-                    style: "font-family: 'ScalySans'",
-                    node: ProseMirror.defaultSchema.nodes.paragraph,
-                },
-                {
-                    action: 'stylishParagraph',
-                    title: game.i18n.format('APSJournal.text-paragraph.name'),
-                    priority: 1,
-                    style: "font-family: 'Bookinsanity'",
-                    node: ProseMirror.defaultSchema.nodes.paragraph,
-                },
-            ],
-        });
+        // menus.format.entries.push({
+        //     action: 'stylishText',
+        //     title: 'Stylish Text',
+        //     children: [
+        //         {
+        //             action: 'stylishTitle',
+        //             title: game.i18n.format(
+        //                 'APSJournal.text-heading-title.name'
+        //             ),
+        //             priority: 1,
+        //             style: "font-family: 'Modesto Condensed'",
+        //             node: ProseMirror.defaultSchema.nodes.paragraph,
+        //             cmd: () => {},
+        //         },
+        //         {
+        //             action: 'stylishHeading',
+        //             title: game.i18n.format('APSJournal.text-heading.name'),
+        //             priority: 1,
+        //             style: "font-family: 'ScalySansCaps'",
+        //             node: ProseMirror.defaultSchema.nodes.paragraph,
+        //         },
+        //         {
+        //             action: 'stylishDataHeading',
+        //             title: game.i18n.format(
+        //                 'APSJournal.text-data-heading.name'
+        //             ),
+        //             priority: 1,
+        //             style: "font-family: 'ScaySansCaps'",
+        //             node: ProseMirror.defaultSchema.nodes.paragraph,
+        //         },
+        //         {
+        //             action: 'stylishData',
+        //             title: game.i18n.format('APSJournal.text-data.name'),
+        //             priority: 1,
+        //             style: "font-family: 'ScalySans'",
+        //             node: ProseMirror.defaultSchema.nodes.paragraph,
+        //         },
+        //         {
+        //             action: 'stylishParagraph',
+        //             title: game.i18n.format('APSJournal.text-paragraph.name'),
+        //             priority: 1,
+        //             style: "font-family: 'Bookinsanity'",
+        //             node: ProseMirror.defaultSchema.nodes.paragraph,
+        //         },
+        //     ],
+        // });
 
         menus.stylish = {
             title: game.i18n.format('APSJournal.stylish-menu.name'),
@@ -1616,4 +1633,114 @@ class APSJMenu extends ProseMirror.ProseMirrorMenu {
 
 Hooks.on('createProseMirrorEditor', (uuid, plugins, options) => {
     plugins.menu = APSJMenu.build(ProseMirror.defaultSchema);
+});
+
+Hooks.on('renderJournalSheet', () => {
+    function changeColorTheme(theme, e) {
+        setTheme(theme);
+        localStorage.setItem('apsj-theme', theme);
+
+        if (!e) var e = window.event;
+        e.cancelBubble = true;
+        if (e.stopPropagation) e.stopPropagation();
+    }
+
+    function toggleThemeSwitcher() {
+        var tooltip = document.getElementById('theme-switcher');
+        if (tooltip.style.display === 'none') {
+            tooltip.style.display = 'block';
+        } else {
+            tooltip.style.display = 'none';
+        }
+    }
+
+    let buttons = document.getElementById('journal-buttons');
+    let nba = document.createElement('div');
+
+    if (!document.getElementById('apsj-color-theme-toggle')) {
+        nba.innerHTML = `<i class='fas fa-palette'></i>
+	<div id='theme-switcher' style='display:none;'>
+		<div class="ct-none" id="ct-none"></div>
+		<div class="ct-blue" id="ct-blue"></div>
+		<div class="ct-cyan" id="ct-cyan"></div>
+		<div class="ct-green" id="ct-green"></div>
+		<div class="ct-orange" id="ct-orange"></div>
+		<div class="ct-purple" id="ct-purple"></div>
+		<div class="ct-red" id="ct-red"></div>
+		<div class="ct-yellow" id="ct-yellow"></div>
+	</div>`;
+        nba.title = 'Color Theme';
+        nba.classList.add('nav-button');
+        nba.classList.add('apsj-ct');
+        nba.setAttribute('id', 'apsj-color-theme-toggle');
+        buttons.parentNode.insertBefore(nba, buttons.nextSibling);
+    }
+
+    document.getElementById('ct-none').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('none', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-blue').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('blue', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-cyan').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('cyan', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-green').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('green', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-orange').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('orange', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-purple').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('purple', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-red').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('red', event);
+        },
+        false
+    );
+
+    document.getElementById('ct-yellow').addEventListener(
+        'click',
+        function (event) {
+            changeColorTheme('yellow', event);
+        },
+        false
+    );
+
+    document.getElementById('apsj-color-theme-toggle').onclick = function () {
+        toggleThemeSwitcher();
+    };
 });
